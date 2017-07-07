@@ -1,0 +1,41 @@
+*{
+  transition: all .35s;
+  font-family: 'Roboto', sans-serif;
+}
+
+.film__card{
+  width: 500px;
+  padding: 15px;
+  background-color: #eee;
+  margin: 10px auto;
+  box-shadow: 0px 0px 13px -5px #fff;
+}
+
+.film__card:hover{
+  box-shadow: 0px 0px 13px -5px #000;
+}
+
+p{
+  text-align: left;
+  font-size: 15px;
+  color: #363434;
+}
+
+q{
+  font-size: 13px;
+  color: #363434;
+}
+
+h1{
+  font-size: 30px;
+  color: #363434;
+}
+
+h1:hover{
+  color: #656565;
+  cursor: pointer;
+}
+
+.ganre-item{
+  margin: 10px;
+}
