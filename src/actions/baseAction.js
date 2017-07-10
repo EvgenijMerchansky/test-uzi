@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from '../store';
 
 export const getData = () => {
-  
+
   return (dispatch) => {
 
     axios.get(
@@ -143,8 +143,36 @@ export const tradeData = (id,films) => {
 export const like = (vote_count) => {
 
   return {
-    type: 'ADD_LIKE',
+    type: 'GET_LIKE',
     payload: vote_count
+  }
+
+}
+
+export const addLike = () => {
+
+  return {
+    type: 'ADD_LIKE',
+    payload: 'test'
+  }
+
+}
+
+
+export const faveData = (dataFave) => {
+
+  return {
+    type: 'ADD_FAVE_DATA',
+    payload: dataFave
+  }
+
+}
+
+export const laterData = (dataLater) => {
+
+  return {
+    type: 'ADD_LATER_DATA',
+    payload: dataLater
   }
 
 }

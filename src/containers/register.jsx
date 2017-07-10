@@ -30,7 +30,8 @@ class Register extends Component {
           <input ref={(input) => {this.inputNewRePassword = input}} type="password" placeholder="password again" name="repasword"></input><br/>
           {messageRePassword ? <div className="error">{messageRePassword}</div> : null}<br/>
 
-          <button disabled={registrated == true ? true : false} type="submit">{registrated == true ? "Registered!" : 'Register'}</button>
+          <button disabled={registrated == true ? true : false} type="submit">{registrated == true ? "Complete!" : 'Sign up'}</button><br/>
+          {registrated == true ? <div><h4>Go to home page!</h4> <Link to="/"><img width="30" src={require('./../images/arrow.png')}/></Link></div> : null}
         </form>
       </div>
     )

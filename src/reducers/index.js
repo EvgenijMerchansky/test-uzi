@@ -7,6 +7,8 @@ import sortReducer from '../reducers/sortReducer';
 import genresReducer from '../reducers/genresReducer';
 import tradeDataReducer from '../reducers/tradeDataReducer';
 import likeReducer from '../reducers/likeReducer';
+import favouritesReducer from '../reducers/favouritesReducer';
+import laterReducer from '../reducers/laterReducer';
 
 const rootReducer = combineReducers({
   firstReducer,
@@ -15,7 +17,9 @@ const rootReducer = combineReducers({
   sortReducer,
   genresReducer,
   tradeDataReducer,
-  likeReducer
+  likeReducer,
+  favouritesReducer,
+  laterReducer
 })
 
 export default rootReducer;

@@ -10,14 +10,19 @@ class Header extends Component{
 
   render(){
 
+    const registerStete = this.props.header.registerReducer.info;
+
     return (
       <div className="header">
 
         {typeof this.props.header.loginReducer.name == 'undefined' ? '' :  `welcome! ${this.props.header.loginReducer.name} !`}<br/>
 
-        <Link to={`/login-page`}>Login</Link>' '
-        <Link to={`/register-page`}>Registration</Link><br/>
-        <Link to={`/`}>Home</Link><br/>
+        {registerStete != '' ? null : <Link to={`/register-page`}>Sign up</Link>}
+
+        <br/><Link to={`/`}>Home</Link><br/>
+
+        {registerStete != '' ? <Link to={`/favourites`}>Favourites</Link> : null}<br/>
+        {registerStete != '' ? <Link to={`/watch-later`}>Watch later</Link> : null}
 
       </div>
     )

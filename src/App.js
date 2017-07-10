@@ -11,6 +11,8 @@ import Header from './components/header.jsx';
 import Movie from './containers/movie/movie.jsx';
 import Register from './containers/register.jsx';
 import Login from './containers/login.jsx';
+import Favourites from './containers/favourites.jsx';
+import WatchLater from './containers/later.jsx'
 
 class App extends Component{
   render(){
@@ -24,6 +26,8 @@ class App extends Component{
             <Route path="/movie/id" component={Movie}/>
             <Route path="/login-page" component={Login}/>
             <Route path="/register-page" component={Register}/>
+            <Route path="/favourites" component={Favourites}/>
+            <Route path="/watch-later" component={WatchLater}/>
           </div>
         </Router>
       </div>

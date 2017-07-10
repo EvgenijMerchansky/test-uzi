@@ -1,15 +1,18 @@
 const initialState = {
-  count: 0
+    count: '',
 };
 
 export default function(state = initialState,action){
 
-
   switch (action.type) {
-    case 'ADD_LIKE':
-    initialState.count = action.payload
 
-      return Object.assign({},state, state.count = action.payload+1 );
+    case 'GET_LIKE':
+
+      return Object.assign({}, state, {count: action.payload});
+
+    case 'ADD_LIKE':
+
+      return Object.assign({},state , {count: state.count+1});
 
       break;
     default:

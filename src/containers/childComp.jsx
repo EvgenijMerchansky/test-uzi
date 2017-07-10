@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './childComp.css';
 
-import { getData, change , tradeData} from '../actions/baseAction';
+import { getData, change , tradeData } from '../actions/baseAction';
 import { ganres } from '../actions/actionGanreRequests';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
@@ -19,6 +19,8 @@ class Chlidr extends Component {
     super(props);
   }
 
+
+  // * getting films data
   componentDidMount(){
 
     this.props.inputState.length > 19 ? null : this.props.getData();
@@ -26,11 +28,10 @@ class Chlidr extends Component {
 
   }
 
+  // * return movie card list
   handleClick(){
 
     const filteredPro = this.props.tradeDataReducer[0].map((elem, index) => {
-
-      console.log(elem)
 
       return (
 
@@ -55,22 +56,21 @@ class Chlidr extends Component {
 
   }
 
-  dataFunc(){
 
+  // * trade id for select-option tag
+  dataFunc(){
 
     const selectedValue2 = this.select;
 
-      const processedCurrentSelect = selectedValue2.value.split(' | ');
+    const processedCurrentSelect = selectedValue2.value.split(' | ');
 
-      const currentId = processedCurrentSelect[0];
+    const currentId = processedCurrentSelect[0];
 
-      this.props.tradeData(currentId,this.props.inputState);
+    this.props.tradeData(currentId,this.props.inputState);
 
   }
 
   render(){
-
-    console.log(this)
 
     const items_elemenst = this.props.genreState,
           wrapped_elemenst = items_elemenst.map((elem, index) => {
@@ -85,6 +85,8 @@ class Chlidr extends Component {
 
     return(
       <div className='film'>
+
+        <h1>Welcome to home page!</h1>
 
         genres: {select}  <button onClick={this.handleClick.bind(this)} className="search-button">search</button><br/><br/>
 
