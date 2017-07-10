@@ -11,7 +11,7 @@ class Header extends Component{
   //
   // }
   render(){
-    console.log(this)
+    // console.log(this)
     // console.log(this.props.header.loginReducer.name)
 
     return (

@@ -10,6 +10,8 @@ class Movie extends Component {
   }
   render(){
 
+    console.log(this);
+
     const movieArray = this.props.movieState,
           singleMovie = movieArray.map((elem, index) => {
 
@@ -26,6 +28,8 @@ class Movie extends Component {
                   <p>{elem.release_date}</p>
                   <p>{elem.overview}</p>
                   <q>language: {elem.original_language}</q><br/><br/>
+                  {this.props.registerState == '' ? <p>nULL</p>  :  <div><h1>loginde like AND FAVOURITE AND "WATCH LATER BLOCK"</h1></div>}
+                  <br/><br/>
                   <Link to="/">Back</Link>
                 </div>
               )
@@ -41,7 +45,8 @@ class Movie extends Component {
 function mapStateToProps(state){
   return{
     movieState: state.firstReducer,
-    genreMovie: state.onlyGanreReducer
+    genreMovie: state.onlyGanreReducer,
+    registerState: state.registerReducer.info
   }
 }
 

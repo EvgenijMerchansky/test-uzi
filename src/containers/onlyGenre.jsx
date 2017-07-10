@@ -63,7 +63,7 @@ function mapDispatchToProps(dispatch) {
 
     changeGanreList,
     onlyGanre
-    
+
   },dispatch)
 }
 

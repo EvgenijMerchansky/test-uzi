@@ -6,6 +6,7 @@ import loginReducer from '../reducers/loginReducer';
 import sortReducer from '../reducers/sortReducer';
 import genresReducer from '../reducers/genresReducer';
 import onlyGanreReducer from '../reducers/onlyGanreReducer';
+import tradeDataReducer from '../reducers/tradeDataReducer';
 
 const rootReducer = combineReducers({
   firstReducer,
@@ -14,7 +15,7 @@ const rootReducer = combineReducers({
   sortReducer,
   genresReducer,
   onlyGanreReducer,
-  modals: modalReducer,
+  tradeDataReducer,
 })
 
 export default rootReducer;

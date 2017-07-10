@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './childComp.css';
 
-import { getData, change } from '../actions/baseAction';
+import { getData, change , tradeData} from '../actions/baseAction';
 import { ganres } from '../actions/actionGanreRequests';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
@@ -21,90 +21,76 @@ class Chlidr extends Component {
 
   componentDidMount(){
 
-    this.props.inputState.firstReducer.length > 19 ? null : this.props.getData();
-    this.props.ganres();
+    this.props.inputState.length > 19 ? null : this.props.getData();
+    this.props.ganres(this.props.inputState);
 
-    this.props.inputState.onlyGanreReducer.length > 19 ? null : this.props.inputState.onlyGanreReducer;
+  }
+
+  handleClick(){
+
+    const filteredPro = this.props.tradeDataReducer[0].map((elem, index) => {
+
+      console.log(elem)
+
+      return (
+
+        <div className="film__card" key={index}>
+
+          <Link to={`/movie/id/:${elem.id}`}>{elem.original_title}</Link>
+
+          <img src={`https://image.tmdb.org/t/p/w500${elem.poster_path}`}/>
+          <p>rate: {elem.popularity} <img width="13" src={require('./../images/1600.png')}/></p>
+          <p>{elem.release_date}</p>
+          <p>{elem.overview}</p>
+          <q>language: {elem.original_language}</q>
+        </div>
+
+      )
+
+    })
+
+    this.rend = filteredPro;
+
+    this.forceUpdate();
+
+  }
+
+  dataFunc(){
+
+
+    const selectedValue2 = this.select;
+
+      const processedCurrentSelect = selectedValue2.value.split(' | ');
+
+      const currentId = processedCurrentSelect[0];
+
+      this.props.tradeData(currentId,this.props.inputState);
 
   }
 
   render(){
 
+    console.log(this)
 
-    const items = this.props.genreState,
-          wrappedItems = items.map((elem, index) => {
-            console.log(elem);
-            return(
+    const items_elemenst = this.props.genreState,
+          wrapped_elemenst = items_elemenst.map((elem, index) => {
 
-              <option key={index} id={elem.id}>{elem.name}</option>
+            const croppArr = this.props.genreState.splice(20,20);
 
-            )
+            return <option key={index} id={elem.id}>{elem.id + ' | ' +  elem.name}</option>
+
           })
 
-    const select = <select>{wrappedItems}</select>
-
-    // === sort by genre list ===
-
-    // const genreList = this.props.inputState.onlyGanreReducer,
-    //       processedList = genreList.map((elem, index) => {
-    //         return (
-    //           <div className="film__card" key={index}>
-    //
-    //             <Link to={`/movie/id/:${elem.id}`}>{elem.original_title}</Link>
-    //
-    //             <img src={`https://image.tmdb.org/t/p/w500${elem.backdrop_path}`}/>
-    //             <p>rate: {elem.popularity} <img width="13" src={require('./../images/1600.png')}/></p>
-    //             <p>{elem.release_date}</p>
-    //             <p>{elem.overview}</p>
-    //             <q>language: {elem.original_language}</q>
-    //           </div>
-    //         )
-    //       })
-    //
-    // // === END sort by genre list ===
-    //
-    // // === all genres ===
-    //
-    // const allGenres = this.props.genreState,
-    //       processedAllGenres = allGenres.map((elem,index) => {
-    //
-    //     return <Link to={`only-genre/${elem.name}`} className="ganre-item" key={index}>{elem.name}</Link>
-    //
-    //       })
-    //
-    // // === END all genres ===
-    //
-    // const filtered = this.props.filteredState;
-    //
-    // // === home page films ===
-    // const homePFilms = this.props.inputState.firstReducer;
-    // const wrappedFilms = homePFilms.map((elem,index) => {
-    //
-    //   return (
-    //     <div className="film__card" key={index}>
-    //
-    //       <Link to={`/movie/id/:${elem.id}`}>{elem.title}</Link>
-    //
-    //       <img src={`https://image.tmdb.org/t/p/w500${elem.poster_path}`}/>
-    //       <p>rate: {elem.popularity} <img width="13" src={require('./../images/1600.png')}/></p>
-    //       <p>{elem.release_date}</p>
-    //       <p>{elem.overview}</p>
-    //       <q>language: {elem.original_language}</q>
-    //     </div>
-    //   )
-    // })
-
-    // === END home page films ===
+    const select = <select ref={(select) => {this.select = select}} onChange={this.dataFunc.bind(this)}>{wrapped_elemenst}</select>
 
     return(
       <div className='film'>
-        {/* {processedAllGenres}<br/>
-        <br/>
-        <input placeholder="search" ref={(input) => {this.inputSearch = input}} name="search" onChange={() => {this.props.change(this.inputSearch.value, wrappedFilms)}}/><br/>
-        {filtered.length > 0 ? filtered : wrappedFilms} */}
 
-        genres: {select}  <button className="search-button">search</button>
-        {/* {wrappedFilms} */}
+        genres: {select}  <button onClick={this.handleClick.bind(this)} className="search-button">search</button><br/><br/>
+
+        <input ref={(input) => {this.inputSearch = input}} onChange={() => {this.props.change(this.inputSearch.value, this.rend)}}></input>
+
+        {this.props.filteredState.length > 0 ? this.props.filteredState : this.rend}
       </div>
     )
   }
@@ -112,10 +98,12 @@ class Chlidr extends Component {
 
 function mapStateToProps(state){
   return{
-    inputState: state,
+    inputState: state.firstReducer,
     filteredState: state.sortReducer.filtered,
     genreState: state.genresReducer,
-    onlyGanre: state.onlyGanreReducer
+    onlyGanre: state.onlyGanreReducer,
+    tradeDataReducer: state.tradeDataReducer,
+    registerState: state.registerReducer
   }
 }
 
@@ -124,6 +112,7 @@ function mapDispatchToProps(dispatch) {
     getData,
     change,
     ganres,
+    tradeData,
   },dispatch)
 }
 

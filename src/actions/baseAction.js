@@ -37,7 +37,7 @@ export const getData = () => {
         }
       }).then(response => {
 
-        console.log(response,'response')
+        // console.log(response,'response')
 
         const filmData = response.data.results
         filmData.map((elem,index) => {
@@ -95,7 +95,7 @@ export const userCheck = (login,password) => {
     return '_' + Math.random().toString(36).substr(2, 9)
   };
 
-  console.log(this,'action')
+  // console.log(this,'action')
   return{
     type: 'CHECK_USER',
     payload: {
@@ -112,6 +112,8 @@ export const userCheck = (login,password) => {
 }
 
 export const change = (typingAttribute,listFilms) => {
+
+  console.log(typingAttribute,listFilms);
 
   const changeF = listFilms.filter((elem, index) => {
     const value = typingAttribute.toLowerCase();
@@ -141,6 +143,39 @@ export const changeGanreList = (typingAttribute,listFilms) => {
     dispatch({
       type: 'CHANGE_GENRE_LIST',
       payload: changeF
+    })
+
+  }
+
+}
+
+export const tradeData = (id,films) => {
+
+  return (dispatch) => {
+
+    const changeF = films.filter((elem, index) => {
+
+      const idsv = elem.genre_ids.indexOf(Number(id));
+
+      if(idsv == 0){
+
+        return elem;
+
+      }
+
+    })
+
+    const sortGettingData = changeF.map((elem,index) => {
+
+      return elem;
+
+    })
+
+    console.log(typeof sortGettingData, 'sortGettingData')
+
+    return dispatch({
+      type: 'TRADE_DATA',
+      payload: sortGettingData
     })
 
   }

@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export const ganres = () => {
+export const ganres = (movies) => {
+
+  // console.log(movies,'movies')
 
   return (dispatch) => {
 
@@ -16,10 +18,15 @@ export const ganres = () => {
 
         }
       }).then(response => {
-        console.log(response.data.genres,'response');
+        // console.log(response.data.genres,'response');
         const allGenres = response.data.genres,
+
+          //  - - - - - -
+
               processedGenres = allGenres.map((elem,index) => {
-                // console.log(elem)
+
+                // console.log(elem.name,'elem.name');
+                // console.log(elem.id,'elem.name');
                 // return elem;
 
                 return dispatch({
@@ -28,6 +35,10 @@ export const ganres = () => {
                 })
 
               })
+
+          //  - - - - - -
+
+
 
 
 
@@ -41,7 +52,7 @@ export const ganres = () => {
 // * === === get all genres === === * //
 
 export const onlyGanre = (individualGanre) => {
-  console.log(individualGanre);
+  // console.log(individualGanre);
 
   return (dispatch) => {
 
@@ -57,10 +68,10 @@ export const onlyGanre = (individualGanre) => {
 
         }
       }).then(response => {
-        console.log(response.data.results,'response');
+        // console.log(response.data.results,'response');
 
         const genresArray = response.data.results;
-        console.log(genresArray,'response.data.results');
+        // console.log(genresArray,'response.data.results');
 
         const processedGenre = genresArray.map((elem,inedx) => {
 
