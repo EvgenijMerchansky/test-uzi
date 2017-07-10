@@ -4,20 +4,19 @@ import { bindActionCreators } from 'redux';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+import { like } from '../../actions/baseAction';
+
 class Movie extends Component {
   constructor(props) {
     super(props);
   }
   render(){
 
-    console.log(this);
-
     const movieArray = this.props.movieState,
           singleMovie = movieArray.map((elem, index) => {
 
             const alias = this.props.location.pathname.substr(11,10),
                   elementID = elem.id;
-
 
             if(alias == elementID){
               return (
@@ -28,7 +27,7 @@ class Movie extends Component {
                   <p>{elem.release_date}</p>
                   <p>{elem.overview}</p>
                   <q>language: {elem.original_language}</q><br/><br/>
-                  {this.props.registerState == '' ? <p>nULL</p>  :  <div><h1>loginde like AND FAVOURITE AND "WATCH LATER BLOCK"</h1></div>}
+                  {this.props.registerState == '' ? <p>Null</p>  :  <div><button onClick={() => {this.props.like(elem.vote_count)}}>Like + </button><span>{this.props.likeReducer > 0 ? this.props.likeReducer : elem.vote_count}</span></div>}
                   <br/><br/>
                   <Link to="/">Back</Link>
                 </div>
@@ -45,9 +44,15 @@ class Movie extends Component {
 function mapStateToProps(state){
   return{
     movieState: state.firstReducer,
-    genreMovie: state.onlyGanreReducer,
-    registerState: state.registerReducer.info
+    registerState: state.registerReducer.info,
+    likeReducer: state.likeReducer.count
   }
 }
 
-export default connect(mapStateToProps)(Movie);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    like
+  },dispatch)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Movie);

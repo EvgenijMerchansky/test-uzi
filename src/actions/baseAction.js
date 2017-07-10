@@ -1,27 +1,8 @@
 import axios from 'axios';
 import store from '../store';
 
-export const add = (arg) => {
-
-  return {
-    type: 'ADD',
-    payload: arg
-  }
-}
-
-export const addTodoTitle = (title) => {
-
-  return {
-    type: 'NEW_TITLE',
-    payload: title
-  }
-
-}
-
 export const getData = () => {
-
-
-
+  
   return (dispatch) => {
 
     axios.get(
@@ -95,7 +76,6 @@ export const userCheck = (login,password) => {
     return '_' + Math.random().toString(36).substr(2, 9)
   };
 
-  // console.log(this,'action')
   return{
     type: 'CHECK_USER',
     payload: {
@@ -113,8 +93,6 @@ export const userCheck = (login,password) => {
 
 export const change = (typingAttribute,listFilms) => {
 
-  console.log(typingAttribute,listFilms);
-
   const changeF = listFilms.filter((elem, index) => {
     const value = typingAttribute.toLowerCase();
     return ~elem.props.children[0].props.children.toLowerCase().indexOf(value);
@@ -124,24 +102,6 @@ export const change = (typingAttribute,listFilms) => {
   return (dispatch) => {
     dispatch({
       type: 'CHANGE_LIST',
-      payload: changeF
-    })
-
-  }
-
-}
-
-export const changeGanreList = (typingAttribute,listFilms) => {
-
-  const changeF = listFilms.filter((elem, index) => {
-    const value = typingAttribute.toLowerCase();
-    return ~elem.props.children[0].props.children.toLowerCase().indexOf(value);
-
-  })
-
-  return (dispatch) => {
-    dispatch({
-      type: 'CHANGE_GENRE_LIST',
       payload: changeF
     })
 
@@ -171,13 +131,20 @@ export const tradeData = (id,films) => {
 
     })
 
-    console.log(typeof sortGettingData, 'sortGettingData')
-
     return dispatch({
       type: 'TRADE_DATA',
       payload: sortGettingData
     })
 
+  }
+
+}
+
+export const like = (vote_count) => {
+
+  return {
+    type: 'ADD_LIKE',
+    payload: vote_count
   }
 
 }

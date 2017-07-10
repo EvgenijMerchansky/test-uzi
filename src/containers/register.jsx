@@ -18,7 +18,7 @@ class Register extends Component {
           messageRePassword = this.props.register.registerReducer.info.ErrorRepassword,
           registrated = this.props.register.registerReducer.info.registrated;
 
-    return( // короче для быстрой проверки пользователя на зарегистрирован или нет , Можно сделать еще один редюсер который будет получать всех зарегистрированых пользователей и потом по ним проходить во время проверки на залогинен или нет а экшен к этому редюсеру ,впилить в форму второй функцией по сабмиту
+    return(
       <div>
         <form onSubmit={(e) => {this.props.newUser(this.inputNewLogin.value, this.inputNewPassword.value, this.inputNewRePassword.value, e.preventDefault())}}>
           <input ref={(input) => {this.inputNewLogin = input}} type="text"  placeholder="type new login" name="new-login"></input><br/>
@@ -36,8 +36,6 @@ class Register extends Component {
     )
   }
 }
-
-// на кнопку сабмит можно сделать редирект на главную ,типа как пользователь зарегистрировался
 
 function mapStateToProps(state){
   return{

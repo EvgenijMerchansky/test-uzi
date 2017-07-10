@@ -5,8 +5,8 @@ import registerReducer from '../reducers/registerReducer';
 import loginReducer from '../reducers/loginReducer';
 import sortReducer from '../reducers/sortReducer';
 import genresReducer from '../reducers/genresReducer';
-import onlyGanreReducer from '../reducers/onlyGanreReducer';
 import tradeDataReducer from '../reducers/tradeDataReducer';
+import likeReducer from '../reducers/likeReducer';
 
 const rootReducer = combineReducers({
   firstReducer,
@@ -14,8 +14,8 @@ const rootReducer = combineReducers({
   registerReducer,
   sortReducer,
   genresReducer,
-  onlyGanreReducer,
   tradeDataReducer,
+  likeReducer
 })
 
 export default rootReducer;

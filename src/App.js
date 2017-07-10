@@ -11,8 +11,6 @@ import Header from './components/header.jsx';
 import Movie from './containers/movie/movie.jsx';
 import Register from './containers/register.jsx';
 import Login from './containers/login.jsx';
-import OnlyGanre from './containers/onlyGenre.jsx';
-import GenreMovie from './containers/movie/ganreMovie.jsx';
 
 class App extends Component{
   render(){
@@ -26,8 +24,6 @@ class App extends Component{
             <Route path="/movie/id" component={Movie}/>
             <Route path="/login-page" component={Login}/>
             <Route path="/register-page" component={Register}/>
-            <Route path="/only-genre" component={OnlyGanre}/>
-            <Route path="/simple-film/id" component={GenreMovie}/>
           </div>
         </Router>
       </div>

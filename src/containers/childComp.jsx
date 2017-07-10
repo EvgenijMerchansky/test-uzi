@@ -88,7 +88,7 @@ class Chlidr extends Component {
 
         genres: {select}  <button onClick={this.handleClick.bind(this)} className="search-button">search</button><br/><br/>
 
-        <input ref={(input) => {this.inputSearch = input}} onChange={() => {this.props.change(this.inputSearch.value, this.rend)}}></input>
+        {/* <input ref={(input) => {this.inputSearch = input}} onChange={() => {this.props.change(this.inputSearch.value, this.rend)}}></input> */}
 
         {this.props.filteredState.length > 0 ? this.props.filteredState : this.rend}
       </div>
@@ -101,7 +101,6 @@ function mapStateToProps(state){
     inputState: state.firstReducer,
     filteredState: state.sortReducer.filtered,
     genreState: state.genresReducer,
-    onlyGanre: state.onlyGanreReducer,
     tradeDataReducer: state.tradeDataReducer,
     registerState: state.registerReducer
   }
